@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 
 @Controller('cars')
 
@@ -11,8 +11,8 @@ export class CarsController {
     }
 
     @Get(':id')
-    getById(@Param('id')id: string){
-        return 'Return a car with id'+id;
+    getById(@Param('id', ParseIntPipe)id: Number){
+        return 'Return a car with id '+id;
     }
 
     @Put(':id')
