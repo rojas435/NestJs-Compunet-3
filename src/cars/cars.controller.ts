@@ -1,9 +1,7 @@
-import { Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Body, UsePipes, ValidationPipe } from '@nestjs/common';
+import { CreateDto } from './dto/create-car-dto'
 
 @Controller('cars')
-
-
-
 export class CarsController {
     @Get()
     getAllCars(){
@@ -16,18 +14,20 @@ export class CarsController {
     }
 
     @Put(':id')
-    update(@Param('id')id: string){
+    update(@Param('id', ParseIntPipe)id: string){
         return 'Update a car with id'+id;
     }
 
     @Delete(':id')
-    delete(@Param('id')id: string){
+    delete(@Param('id', ParseIntPipe)id: string){
         return 'Delete a car with id' + id;
     }
 
     @Post('')
-    create(){
-        return 'Create a car with id';
+    //@UsePipes(ValidationPipe)
+    create(@Body() body:CreateDto){
+
+        return body;
     }
 
 }
