@@ -3,6 +3,9 @@
 /node_modules
 /build
 
+/postgress-data
+/pgadmin-data
+
 # Logs
 logs
 *.log
